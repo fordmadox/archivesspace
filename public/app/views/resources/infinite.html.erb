@@ -1,5 +1,9 @@
 <a name="main" title="<%= t('internal_links.main') %>"></a>
 
+<div class="row">
+  <%= render partial: 'shared/breadcrumbs' %>
+</div>
+
 <div id="main-content" class="row">
   <div class="information col-sm-7">
     <%= render partial: 'shared/idbadge', locals: {:result => @result, :props => { :full => true} } %>
@@ -9,19 +13,21 @@
   </div>
 </div>
 
-<div class="row">
-  <%= render partial: 'shared/breadcrumbs' %>
-</div>
-
 <%= render partial: 'resources/resource_alltabs' %>
 
+<%# mdc: first pass at a fix was just to remove the sidebar.  that's great,
+but the layout still needs to be fixed to mimic NCSU's site, along with scrollspy magic.
+need to get HM (or someone) to update this view so that it mimics
+the NCSU site, with scrollspy... and also includes Duke's nice
+addition of being able to access all of the Series in a UL within the scrollspy.
+...tada! %>
 <%= javascript_include_tag 'treesync' %>
 <%= javascript_include_tag 'infinite_scroll' %>
 <%= javascript_include_tag 'largetree' %>
 <%= javascript_include_tag 'tree_renderer' %>
 
 <div class="row" id="tabs">
-  <div class="infinite-record-wrapper col-sm-9">
+  <div class="infinite-record-wrapper col-sm-9" id="center-page">
       <div class="infinite-record-container">
           <div class="root">
               <% waypoint_size = 20 %>
@@ -32,10 +38,14 @@
       </div>
   </div>
 
+
   <div id="sidebar" class="sidebar sidebar-container col-sm-3 resizable-sidebar infinite-tree-sidebar">
     <div class="infinite-tree-view largetree-container" id='tree-container'></div>
   </div>
+
+
 </div>
+
 
 <script>
 
@@ -67,6 +77,7 @@
 window.tree = tree;
 </script>
 
+
 <script>
   // handle clicks on tree items
   $('.infinite-record-wrapper').on('click', '.infinite-record-record a.record-title', function(event) {
@@ -79,5 +90,7 @@ window.tree = tree;
       return true;
   });
 </script>
+
+
 
 <%= render partial: 'shared/modal_actions' %>

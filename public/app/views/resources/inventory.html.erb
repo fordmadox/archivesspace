@@ -1,5 +1,9 @@
 <a name="main" title="<%= t('internal_links.main') %>"></a>
 
+<div class="row">
+    <%= render partial: 'shared/breadcrumbs' %>
+</div>
+
 <div id="main-content" class="row">
   <div class="information col-sm-7">
       <%= render partial: 'shared/idbadge', locals: {:result => @result, :props => { :full => true} } %>
@@ -9,9 +13,7 @@
   </div>
 </div>
 
-<div class="row">
-    <%= render partial: 'shared/breadcrumbs' %>
-</div>
+
 
 <%= render partial: 'resources/resource_alltabs' %>
 

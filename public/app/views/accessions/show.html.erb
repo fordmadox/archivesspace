@@ -1,3 +1,5 @@
+<%= render partial: 'shared/breadcrumbs' %>
+
 <div id="main-content" class="row accessions">
 
   <div class="row" id="info_row">
@@ -8,8 +10,6 @@
       <%= render partial: 'shared/page_actions', locals: {:record => @result, :title => @result.display_string, :url => request.fullpath } %>
     </div>
   </div>
-
-  <%= render partial: 'shared/breadcrumbs' %>
 
   <div class="col-sm-9">
 

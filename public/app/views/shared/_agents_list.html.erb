@@ -9,7 +9,11 @@
           <%= inheritance(relationship['_inherited']).html_safe %>
         <% end %>
         <%= link_to agent['title'], app_prefix(agent['uri']) %>
-        (<%= [relator, I18n.t("#{agent['jsonmodel_type']}._singular")].compact.join(', ') %>)
+        <% unless relator.nil? %>
+          (<%= relator
+#removed , I18n.t("#{agent['jsonmodel_type']}._singular") after "relator", as well as the join function since there can be only one relator.
+          %>)
+        <% end %>
       </li>
     <% end %>
   </ul>

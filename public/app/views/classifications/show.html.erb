@@ -1,3 +1,5 @@
+<%= render partial: 'shared/breadcrumbs' %>
+
 <div id="main-content" class="classifications">
   <div class="row">
     <div class="information col-sm-7">
@@ -9,7 +11,6 @@
   </div>
     <div class="row">
       <div class="information col-sm-12">
-      <%= render partial: 'shared/breadcrumbs' %>
       <div class="description"><%= @result.description %></div>
       <% if @result.creator %>
       <div class="creator clear">

@@ -10,7 +10,6 @@ if result.level
 else
     badge_label = t("#{result.primary_type}._singular")
 end
-
 %>
 
 
@@ -28,7 +27,7 @@ end
     <i class="<%= icon_for_type(result.primary_type) %>"></i>&#160;<%= badge_label %> <% if result.container_summary_for_badge %> &mdash; <%= result.container_summary_for_badge %><% end %>
   </div>
     <% comp_id = result.identifier %>
-  <% unless comp_id.blank? %>
+  <% unless comp_id.blank? || result.primary_type == 'digital_object' %>
     <div class="identifier">
       <span class="id-label"><%= t('search_sorting.identifier') %>:</span>&#160;<span class="component"><%= comp_id %></span>
     </div>
