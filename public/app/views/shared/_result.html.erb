@@ -44,7 +44,10 @@
  end
  %>
 
-<%# can't do something like result.dates since the record is not "full" %>
+<%# can't do something like result.dates since the record is not "full"
+should also filter dates out unless they're creation, broadcast, or whatever (e.g. don't include "digitizatoin" dates)
+but since we don't do that anyway, i haven't yet added that filter.
+ %>
  <%
  if result['json']['dates'].try(:any?)
   @all_dates = Array.new
