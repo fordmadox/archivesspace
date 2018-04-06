@@ -51,6 +51,7 @@
          </div>
        <% end %>
 
+
        <% if defined?(@results) %>
        <%# should refactor everything to control the h1-h6 levels, but
        for now i'm just changing things in place (and this fix needs to be there for accessiblity reasons, as well
@@ -60,6 +61,16 @@
        <% end %>
        <% end %>
        </div>
+
+       <% if @results_type == 'Subjects' %>
+         <div>
+           i'm gonna add subject text here.
+         </div>
+      <% elsif @results_type == 'Names' %>
+         <div>
+           i'm gonna add name text here.
+         </div>
+       <% end %>
      </div>
 
 
