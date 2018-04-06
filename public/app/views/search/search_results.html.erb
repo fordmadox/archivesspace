@@ -18,6 +18,7 @@
                                                     :field_options => [["#{t('search_results.filter.fullrecord')}",''],
                                                                        ["#{t('search_results.filter.title')}",'title'],
                                                                        ["#{t('search_results.filter.creators')}",'creators_text'],
+                                                                       ["#{t('search_results.filter.subjects')}",'subjects_text'],
                                                                        ["#{t('search_results.filter.notes')}", 'notes'],
                                                                        ["#{t('search_results.filter.identifier')}", 'identifier'] ],
                                                     :header_size => '1',
@@ -53,7 +54,7 @@
 
        <% if defined?(@results) %>
        <%# should refactor everything to control the h1-h6 levels, but
-       for now i'm just changing things in place (and this fix needs to be there for accessiblity reasons, as well 
+       for now i'm just changing things in place (and this fix needs to be there for accessiblity reasons, as well
        as to have decent HTML output) %>
        <h1><%= t('search_results.results_head', {:type => results_type, :start => @results['offset_first'],
               :end => @results['offset_last'], :total => @results['total_hits'] })  %></h1>
@@ -64,6 +65,20 @@
 
 
 
+      <div id="refineSearchPanel" class="container refinesearch" aria-hidden="true" style="display:none;">
+        <%= render partial: 'shared/search', locals: {:search_url => @base_search,
+                                                      :title => t('archive._plural'),
+                                                      :limit_options => [["#{t('actions.search')} #{t('search-limits.all')}",''],
+                                                                         [t('search-limit', :limit => t('search-limits.resources')),'resource'],
+                                                      :field_options => [["#{t('search_results.filter.fullrecord')}",''],
+                                                                         ["#{t('search_results.filter.title')}",'title'],
+                                                                         ["#{t('search_results.filter.creators')}",'creators_text'],
+                                                                         ["#{t('search_results.filter.subjects')}",'subjects_text'],
+                                                                         ["#{t('search_results.filter.identifier')}", 'identifier'] ],
+                                                      :show_header => false } %>
+      </div>
+    </div>
+  <% end %>
 
   <% if defined?(@results) %>
      <div class="row">

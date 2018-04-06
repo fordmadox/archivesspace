@@ -1085,6 +1085,9 @@ en:
   usage_date:
     <<: *date_attributes
 
+  event_date:
+    <<: *date_attributes
+
   archival_record_date:
     <<: *date_attributes
 
@@ -1427,6 +1430,7 @@ en:
       update_assessment_record: create/update assessment records
       delete_assessment_record: delete assessment records
       manage_assessment_attributes: create/update/delete repository assessment attributes definitions
+      manage_enumeration_record: create/update/delete controlled value records
     _singular: Group
     _plural: Groups
 
@@ -1725,7 +1729,7 @@ en:
     processing_total_extent_type_tooltip: *extent_type_tooltip
     processing_total_extent_type_: --
     processing_hours_total: Total Processing Hours
-    processing_hours_total_short: Total hours
+    processing_hours_total_short: Total Hours
     processing_hours_total_tooltip: |
         <p>The numerical result of multiplying "Processing hours per foot estimate" by "Processing total extent". The value can be overwritten to reflect the actual processing time and not a value based on the estimated processing hrs/unit value.</p>
     processing_plan: Processing Plan
