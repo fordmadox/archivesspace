@@ -39,7 +39,16 @@ en:
     welcome_search_label: "welcome search label (what's this used for?)"
     welcome_page_title: Archives at Yale
     search_leader: "Find what you're looking for:"
-
+    subject_intro: |
+        <div class="alert alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p class="well">Subject records are topics, places, and genres used to describe the context and content of archival materials. In Archives at Yale, users can view a subject record to see all of the collections relating to that topic, place, or genre. Subject records are shared across all libraries and repositories at Yale, and staff choose them from controlled lists, including the Library of Congress.</p>
+        </div>
+    agent_intro: |
+        <div class="alert alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+          <p class="well">Name records describe the people, families, and organizations that create archival materials. In Archives at Yale, users can view name records to see all of the collections created by a person, family, or organization. Name records are shared across all libraries and repositories at Yale, and staff choose them from controlled lists, including the Library of Congress.</p>
+        </div>
   actions:
     search: Search
     search_within: Search within results

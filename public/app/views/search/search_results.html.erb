@@ -39,8 +39,7 @@
              <%= render partial: 'shared/search', locals: {:search_url => @base_search,
                                                            :title => t('archive._plural'),
                                                            :limit_options => [["#{t('actions.search')} #{t('search-limits.all')}",''],
-                                                                              [t('search-limit', :limit => t('search-limits.resources')),'resource'],
-                                                                              [t('search-limit', :limit => t('search-limits.digital')),'digital_object']],
+                                                                              [t('search-limit', :limit => t('search-limits.resources')),'resource']],
                                                            :field_options => [["#{t('search_results.filter.fullrecord')}",''],
                                                                               ["#{t('search_results.filter.title')}",'title'],
                                                                               ["#{t('search_results.filter.creators')}",'creators_text'],
@@ -62,18 +61,21 @@
        <% end %>
        </div>
 
-       <% if @results_type == 'Subjects' %>
-         <div>
-           i'm gonna add subject text here.
-         </div>
-      <% elsif @results_type == 'Names' %>
-         <div>
-           i'm gonna add name text here.
-         </div>
-       <% end %>
      </div>
 
 
+     <%#mdc: new stuff, per S&E group %>
+     <% if ['Subjects', 'Names'].include?(@results_type) %>
+     <div class="row">
+       <div class="col-sm-12">
+         <% if @results_type == 'Subjects' %>
+          <%= t('brand.subject_intro').html_safe %>
+         <% elsif @results_type == 'Names' %>
+          <%= t('brand.agent_intro').html_safe %>
+         <% end %>
+       </div>
+     </div>
+     <% end %>
 
 
   <% if defined?(@results) %>
