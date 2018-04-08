@@ -1,5 +1,31 @@
 
 <div class="suggest_correction">
-  <input class="btn btn-default btn-xs" type="submit" value="Suggest a Correction">
+  <button class="btn btn-default btn-xs" type="button" data-toggle="modal"
+  data-target="#temp-popup">
+  Suggest a Correction
   <i class="fa fa-check-square" aria-hidden="true"></i>
+</button>
 </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="temp-popup" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <%= @result.uri %>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
