@@ -10,11 +10,15 @@
   <% end %>
   <ul class="present_list agents_list">
     <% agents.reject{|v| v == 'above-the-scroll' }.each do |agent| %>
+     <%#mdc: this was messed up before; the tests didn't match the json data
+     (_resolved and _inherited are sibling keys),
+     so the inherited info would never display. %>
+      <% inherited_info = agent['_inherited'] %>
       <% agent = agent.fetch('_resolved') %>
       <% relator = agent['relator'] ? I18n.t("enumerations.linked_agent_archival_record_relators.#{agent['relator']}", :default => agent['relator']) : nil %>
       <li>
-        <% unless agent['_inherited'].blank? %>
-          <%= inheritance(agent['_inherited']).html_safe %>
+        <% unless inherited_info.blank? %>
+          <%= inheritance(inherited_info).html_safe %>
         <% end %>
         <%= link_to agent['title'], app_prefix(agent['uri']) %>
         <% unless relator.nil? %>
