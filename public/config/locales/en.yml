@@ -184,7 +184,7 @@ en:
       creators_text: Creator
       scope: Scope
       notes: Notes
-      identifier: Identifier
+      identifier: Call Number
       source: Source
       published_agents: Names
       agents_text: Names
@@ -224,7 +224,7 @@ en:
     rules: Rules
     outcome: Outcome
     event_type: Type
-    identifier: Identifier
+    identifier: Call Number
     select: Select
     year_sort: Year
     sorting: "%{type} %{direction}"
@@ -375,7 +375,7 @@ en:
     _singular: Collection
     _plural: Collections
     _public:
-      identifier: Identifier
+      identifier: Call Number
       extent: Extent
       dates: Dates
       lang: Language

@@ -1,31 +1,20 @@
+<%#
+context = document.location.href
+title = $('.information > h1').text()
+repo = $('ul.breadcrumb > li:first > a').text().trim()
+callno = $('.identifier > .component').text().trim()
+box-badge = $('.badge-and-identifier > .archival_object').text().trim().split('— ').pop()
+container = $('#aeon_request_sub > input[name^=instance_top_container_display_string]').map(function() { return this.value; }).get().join('; ')
+%>
+
+<%
+base = "https://web.library.yale.edu/form/archivesspace-pui-suggest-correction"
+context = request.original_url
+%>
 
 <div class="suggest_correction">
-  <button class="btn btn-default btn-xs" type="button" data-toggle="modal"
-  data-target="#temp-popup">
-  Suggest a Correction
-  <i class="fa fa-check-square" aria-hidden="true"></i>
-</button>
+  <a class="btn btn-default btn-xs" href="<%= base + '?URL=' + context %>" target="_blank">
+     Suggest a Correction
+       <i class="fa fa-check-square" aria-hidden="true"></i>
+  </a>
 </div>
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="temp-popup" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>
-            <%= @result.uri %>
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
