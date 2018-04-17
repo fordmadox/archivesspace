@@ -1,19 +1,37 @@
 <%#
-context = document.location.href
-title = $('.information > h1').text()
-repo = $('ul.breadcrumb > li:first > a').text().trim()
-callno = $('.identifier > .component').text().trim()
-box-badge = $('.badge-and-identifier > .archival_object').text().trim().split('— ').pop()
-container = $('#aeon_request_sub > input[name^=instance_top_container_display_string]').map(function() { return this.value; }).get().join('; ')
-%>
+this works since we now put all of our call roman_numbers
+in the id_0 field instead of id0-3. %>
 
 <%
 base = "https://web.library.yale.edu/form/archivesspace-pui-suggest-correction"
 context = request.original_url
+title = @result['primary_type'] == 'digital_object' ? @result['json']['title'] : @result['json']['display_string']
+repo = @result['json']['repository']['_resolved']['name']
+callno =
+if @result['primary_type'] == 'resource'
+  then @result['json']['id_0']
+elsif @result['primary_type'] == 'accession'
+  then @result['json']['id_0'] + '-' + @result['json']['id_1'] + '-' + @result['json']['id_2']
+elsif @result['primary_type'] == 'archival_object'
+  then  @result['json']['_composite_identifier']
+else ''
+end
+if @result['primary_type'] == 'archival_object'
+  @containers = Array.new
+  @result['json']['instances'].each do |instance|
+    i = instance['sub_container']['top_container']['_resolved']['display_string']
+    @containers << (i || "")
+  end
+  @containers = @containers.join('; ')
+end
+%>
+
+<%
+linkurl = base + '?URL=' + context + '?repo=' + repo + '?callno=' + callno + '?container=' + @containers.to_s
 %>
 
 <div class="suggest_correction">
-  <a class="btn btn-default btn-xs" href="<%= base + '?URL=' + context %>" target="_blank">
+  <a class="btn btn-default btn-xs" href="<%= linkurl %>" target="_blank">
      Suggest a Correction
        <i class="fa fa-check-square" aria-hidden="true"></i>
   </a>
