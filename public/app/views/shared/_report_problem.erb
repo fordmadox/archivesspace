@@ -1,6 +1,9 @@
 <%#
-this works since we now put all of our call roman_numbers
-in the id_0 field instead of id0-3. %>
+mdc: before/during soft launch, i should harmonize how the ask a question plugin
+and suggest a correction features work.  no reason that they couldn't both be done on the server side,
+and the only thing that would need to change would be pass a parameter to change
+the base URL (or consolidate the two forms into one).
+%>
 
 <%
 base = "https://web.library.yale.edu/form/archivesspace-pui-suggest-correction"
@@ -16,18 +19,24 @@ elsif @result['primary_type'] == 'archival_object'
   then  @result['json']['_composite_identifier']
 else ''
 end
-if @result['primary_type'] == 'archival_object'
-  @containers = Array.new
-  @result['json']['instances'].each do |instance|
-    i = instance['sub_container']['top_container']['_resolved']['display_string']
-    @containers << (i || "")
+
+@container = Array.new
+@result.container_titles_and_uris.each do |item|
+    @container << item['title']
   end
-  @containers = @containers.join('; ')
+@container = @container.join('; ')
+
+@container_admin = Array.new
+@result['json']['instances'].each do |instance|
+  tc = instance['sub_container']['top_container']['_resolved']['display_string']
+  @container_admin << (tc || "")
 end
+@container_admin = @container_admin.join('; ')
+
 %>
 
 <%
-linkurl = base + '?URL=' + context + '?repo=' + repo + '?callno=' + callno + '?container=' + @containers.to_s
+linkurl = base + '?URL=' + context + '?title=' + title + '?repo=' + repo + '?callno=' + callno + '?container=' + @container + '?container_admin=' + @container_admin
 %>
 
 <div class="suggest_correction">
