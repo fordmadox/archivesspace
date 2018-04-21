@@ -94,10 +94,10 @@ class Resource < Record
     }
 
     if raw['language'].try(:any?)
-      md['inLanguage'] = {
-        '@type' => 'Language',
-        'name' => I18n.t("enumerations.language_iso639_2.#{raw['language']}", :default => raw['language'])
-      }
+         md['inLanguage'] = {
+           '@type' => 'Language',
+           'name' => I18n.t("enumerations.language_iso639_2.#{raw['language']}", :default => raw['language'])
+         }
     end
 
     md['provider'] = {
