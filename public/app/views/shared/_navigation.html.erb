@@ -16,12 +16,16 @@ for now i just pulled up the aria-label and added it to the section element %>
           and also make sure the link is not active when
           on homepage (or just remove this link altogether
           since it duplicates the div.h1 link) %>
+
+          <%# (change the bit after proxy_url if this section is uncommented,
+          in order to add the Home link back.)
           <li>
-            <a href="<%= AppConfig[:public_proxy_url] %>" title="Archives at Yale">
-                <span class="fa fa-home" aria-hidden="true"></span>
+            <a href="<%= AppConfig[:public_proxy_url] >" title="Archives at Yale">
+                <span>Home</span>
                 <span class="sr-only">Return to Homepage</span>
               </a>
           </li>
+          %>
 
           <li class="dropdown">
             <a class="dropdown-toggle" href="<%= app_prefix("/repositories") %>">
@@ -35,7 +39,7 @@ but for now, i'm just hardcoding this as a proof of concept
               <li><a href="<%= app_prefix("/repositories/12") %>">Manuscripts and Archives</a></li>
               <li><a href="<%= app_prefix("/repositories/10") %>">Medical Historical Library, Harvey Cushing / John Hay Whitney Medical Library</a></li>
               <li><a href="<%= app_prefix("/repositories/8") %>">The Lewis Walpole Library</a></li>
-              <li><a href="<%= app_prefix("/repositories/2") %>">Yale Center for British Art</a></li>
+              <li><a href="<%= app_prefix("/repositories/2") %>">Yale Center for British Art, Rare Books and Manuscripts</a></li>
               <li><a href="<%= app_prefix("/repositories/15") %>">Yale Peabody Museum of Natural History</a></li>
               <li><a href="<%= app_prefix("/repositories/5") %>">Yale University Arts Library</a></li>
               <li><a href="<%= app_prefix("/repositories/4") %>">Yale University Divinity School Library</a></li>
