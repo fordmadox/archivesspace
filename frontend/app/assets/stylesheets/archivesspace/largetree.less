@@ -109,9 +109,14 @@
         outline-style: none;
     }
 
+/*
     .expandme-icon.expanded {
         transform: rotate(90deg);
         transition:transform 100ms ease-out;
+    }
+*/
+    .expandme-icon.expanded:before {
+        content:"\2212";
     }
 
     tr.current {

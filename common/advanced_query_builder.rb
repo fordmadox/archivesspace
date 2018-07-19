@@ -3,6 +3,7 @@ require 'jsonmodel'
 class AdvancedQueryBuilder
 
   attr_reader :query
+
   RangeValue = Struct.new(:from, :to)
 
   def initialize
