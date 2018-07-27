@@ -218,7 +218,7 @@ class Solr
     end
 
     def pui_qf
-      "four_part_id^50 title^25 finding_aid_title^25 notes summary agents subjects access_restrictions_note content_description general_note inventory provenance use_restrictions_note"
+      "four_part_id^50 title^25 finding_aid_filing_title^25 fullrecord"
     end
 
     def staff_ui_qf

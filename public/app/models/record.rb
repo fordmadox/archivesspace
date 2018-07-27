@@ -12,7 +12,7 @@ class Record
               :identifier, :classifications, :level, :other_level, :linked_digital_objects,
               :container_titles_and_uris
 
-  attr_accessor :criteria 
+  attr_accessor :criteria
 
   ABSTRACT = %w(abstract scopecontent)
 
@@ -323,7 +323,7 @@ class Record
     end
     info
   end
-  
+
   def archives_space_client
     ArchivesSpaceClient.instance
   end
@@ -401,7 +401,7 @@ class Record
     ASUtils.wrap(json['instances']).each do |instance|
       if instance['digital_object'] && instance['digital_object']['ref']
         digital_object = digital_object_for_uri(instance['digital_object']['ref'])
-        next if digital_object.nil?
+        next if digital_object.nil? || digital_object['publish'] == false
 
         results[instance['digital_object']['ref']] = record_from_resolved_json(digital_object)
       end
