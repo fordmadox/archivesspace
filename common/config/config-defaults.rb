@@ -87,7 +87,7 @@ AppConfig[:solr_backup_directory] = proc { File.join(AppConfig[:data_directory],
 #      "ps" => 0,
 #    }
 # Configuring search operator to be AND by default - ANW-427
-AppConfig[:solr_params] = { "op" => "AND" }
+AppConfig[:solr_params] = {}
 
 # Set the application's language (see the .yml files in
 # https://github.com/archivesspace/archivesspace/tree/master/common/locales for
