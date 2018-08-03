@@ -241,7 +241,7 @@ DEPENDENCIES
   multi_json (~> 1.13.1)
   multipart-post (= 1.2.0)
   net-http-persistent (= 2.8)
-  nokogiri (= 1.8.1)
+  nokogiri (= 1.8.4)
   pry-debugger-jruby
   pry-nav
   pry-rails

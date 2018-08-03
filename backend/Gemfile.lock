@@ -157,7 +157,7 @@ DEPENDENCIES
   multipart-post (= 1.2.0)
   net-http-persistent (= 2.8)
   net-ldap (~> 0.16.0)
-  nokogiri (= 1.8.1)
+  nokogiri (= 1.8.4)
   oai (= 0.4.0)
   pry
   pry-debugger-jruby
