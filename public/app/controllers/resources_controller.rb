@@ -196,14 +196,25 @@ class ResourcesController <  ApplicationController
 
   def waypoints
     search_opts = {
-      'resolve[]' => ['top_container_uri_u_sstr:id']
+      'resolve[]' => ['top_container_uri_u_sstr:id', 'ancestors:id', 'resource:id']
     }
+
+    urls = params[:urls]
+    waypoint_size = params[:size].to_i
+    waypoint_number = params[:number].to_i
+    collection_size = params[:collection_size].to_i
+
     results = archivesspace.search_records(params[:urls], search_opts, true)
 
     render :json => Hash[results.records.map {|record|
-                           @result = record
-                           [record.uri,
-                            render_to_string(:partial => 'infinite_item')]}]
+                          @result = record
+                          record_number = (waypoint_number * waypoint_size) + urls.index(@result.uri)
+                          [record.uri,
+                          render_to_string(:partial => 'infinite_item',
+                                           :locals => {
+                                             :record_number =>  record_number,
+                                             :collection_size =>  collection_size
+                                           })]}]
   end
 
   def tree_root
