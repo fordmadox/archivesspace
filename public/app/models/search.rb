@@ -56,11 +56,11 @@ class Search < Struct.new(:q, :op, :field, :limit, :from_year, :to_year, :filter
   def filters_blank?
     filter_from_year.blank? && filter_to_year.blank? && filter_q.blank?
   end
- 
+
   def has_query?
     have_contents?(q)
   end
-  
+
   def have_contents?(year_array)
     have = false
     year_array.each do |year|
@@ -70,7 +70,7 @@ class Search < Struct.new(:q, :op, :field, :limit, :from_year, :to_year, :filter
     end
     have
   end
- 
+
  def allow_dates?
    allow = true
    limit.split(",").each do |type|
@@ -84,7 +84,7 @@ class Search < Struct.new(:q, :op, :field, :limit, :from_year, :to_year, :filter
    dates_within && !dates_searched && filter_from_year.empty? && filter_to_year.empty?
  end
 
- 
+
  def get_filter_q_params
    params = ''
    self[:filter_q].each do |v|
@@ -97,7 +97,7 @@ class Search < Struct.new(:q, :op, :field, :limit, :from_year, :to_year, :filter
    fqa = []
    self[:filter_q].each do |v|
      Rails.logger.debug("v: #{v} CGI-escaped: #{CGI.escape(v)}")
-     uri = (url)? url.sub("&filter_q[]=#{CGI.escape(v)}", "") : ''
+     uri = (url)? url.gsub(/#{Regexp.quote("&filter_q[]=#{CGI.escape(v)}")}(&|$)/, "\\1") : ''
      fqa.push({'v' => v, 'uri' => uri})
    end
    fqa

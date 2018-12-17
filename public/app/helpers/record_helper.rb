@@ -53,13 +53,13 @@ module RecordHelper
               when 'repository'
               'fa-home'
               when  'resource'
-              'fa-archive'
+              'fa-cubes'
               when 'archival_object'
               'fa-file-o'
               when 'digital_object'
-              'fa-file-image-o'
+              'fa-th'
               when 'accession'
-              'fa-file-text-o'
+              'fa-yale-accession'
               when 'subject'
               'fa-tag'
               when  'agent_person'
@@ -68,12 +68,16 @@ module RecordHelper
               'fa-university'
               when 'agent_family'
               'fa-users'
+              when 'agent_software'
+              'fa-save'
               when 'classification'
-              'fa-share-alt'
+              'fa-sitemap'
               when 'top_container'
               'fa-archive'
+              when 'digital_object_component'
+              'fa-th-large'
               else
-              'fa-cog'
+              'fa-square'
             end
   end
 
@@ -82,5 +86,10 @@ module RecordHelper
       <i class='#{icon_for_type(primary_type)}'></i> \
     </span>".html_safe
   end
+
+  def scroll_view_notes_order
+    AppConfig[:pui_scroll_view_notes_order]
+  end
+
 
 end
