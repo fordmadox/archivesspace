@@ -40,8 +40,7 @@ class ResourcesController <  ApplicationController
       @base_search = "/repositories/resources?"
     end
     search_opts = default_search_opts( DEFAULT_RES_INDEX_OPTS)
-    search_opts['fq'] = AdvancedQueryBuilder.new.and('repository', "/repositories/#{@repo_id}") if @repo_id
-
+    search_opts['fq'] = ["repository:\"/repositories/#{@repo_id}\""] if @repo_id
     DEFAULT_RES_SEARCH_PARAMS.each do |k,v|
       params[k] = v unless params.fetch(k, nil)
     end
@@ -92,7 +91,6 @@ class ResourcesController <  ApplicationController
     res_id = "/repositories/#{repo_id}/resources/#{params.require(:id)}"
     search_opts = DEFAULT_RES_SEARCH_OPTS
     search_opts['fq'] = ["resource:\"#{res_id}\""]
-    search_opts['fq'] = AdvancedQueryBuilder.new.and('resource', res_id)
     params[:res_id] = res_id
 #    q = params.fetch(:q,'')
     unless params.fetch(:q,nil)
@@ -196,25 +194,14 @@ class ResourcesController <  ApplicationController
 
   def waypoints
     search_opts = {
-      'resolve[]' => ['top_container_uri_u_sstr:id', 'ancestors:id', 'resource:id']
+      'resolve[]' => ['top_container_uri_u_sstr:id']
     }
-
-    urls = params[:urls]
-    waypoint_size = params[:size].to_i
-    waypoint_number = params[:number].to_i
-    collection_size = params[:collection_size].to_i
-
     results = archivesspace.search_records(params[:urls], search_opts, true)
 
     render :json => Hash[results.records.map {|record|
-                          @result = record
-                          record_number = (waypoint_number * waypoint_size) + urls.index(@result.uri)
-                          [record.uri,
-                          render_to_string(:partial => 'infinite_item',
-                                           :locals => {
-                                             :record_number =>  record_number,
-                                             :collection_size =>  collection_size
-                                           })]}]
+                           @result = record
+                           [record.uri,
+                            render_to_string(:partial => 'infinite_item')]}]
   end
 
   def tree_root
@@ -294,8 +281,7 @@ class ResourcesController <  ApplicationController
       'sort' => 'typeahead_sort_key_u_sort asc',
       'facet.mincount' => 1
     })
-    search_opts['fq'] = AdvancedQueryBuilder.new.and('collection_uri_u_sstr', resource_uri).and('types', 'pui').and('types', 'pui_container')
-
+    search_opts['fq']=[qry]
     set_up_search(['pui_container'], ['type_enum_s', 'published_series_title_u_sstr'], search_opts, params, qry)
     @base_search= @base_search.sub("q=#{qry}", '')
     page = Integer(params.fetch(:page, "1"))
