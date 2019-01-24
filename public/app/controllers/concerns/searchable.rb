@@ -125,7 +125,7 @@ module Searchable
     # any search within results?  Add them to the query string
     @search[:filter_q].each do |v|
       unless v.blank?
-        advanced_query_builder.and('keyword', v, 'text', false, false)
+        filter_query.and('keyword', v, 'text', false, false)
       end
     end
 
