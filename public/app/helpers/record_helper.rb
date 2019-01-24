@@ -91,5 +91,4 @@ module RecordHelper
     AppConfig[:pui_scroll_view_notes_order]
   end
 
-
 end
