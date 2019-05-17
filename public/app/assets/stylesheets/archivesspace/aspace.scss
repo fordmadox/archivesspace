@@ -894,7 +894,11 @@ span.head {
 }
 
 .feed-container .infinite-record-context {
-  .infinite-record-context-affix {
+  .infinite-record-context-resource {
+    display: none;
+  }
+
+  .infinite-record-context-selector {
     padding: 8px 15px;
     margin-bottom: 20px;
     background-color: #f5f5f5;
@@ -943,11 +947,59 @@ span.head {
 .infinite-record-context.fixed {
   margin-top: 60px;
 
-  .infinite-record-context-affix {
-    height: 60px;
-    position: fixed;
-    top: 5px;
-    z-index: 100;
+  .infinite-record-context-resource {
+    display: block;
+    background-color: white;
+    padding: 15px 20px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    text-decoration: none !important;
+
+    .infinite-record-context-resource-title {
+      font-weight: bold;
+      color: #34b6e4;
+      font-size: 1.25rem;
+    }
+
+    .infinite-record-context-resource-back-to-top {
+      float: right;
+      line-height: 30px;
+    }
+  }
+
+  .infinite-record-context-affix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .infinite-record-context-selector {
+    height: 60px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  }
+}
+
+#collection-feed {
+  .infinite-item.infinite-item-archival-object {
+    padding: 5px 20px;
+
+    &.infinite-item-indent-1 {
+      padding: 10px 0;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    dl dt {
+      display: none;
+    }
+    dl dd {
+      margin-left: 0;
+    }
   }
 }
