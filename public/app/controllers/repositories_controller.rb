@@ -91,6 +91,7 @@ class RepositoriesController < ApplicationController
             '@type' => 'Organization',
             'name' => @result['parent_institution_name']
           }
+
           # removing contactPoint, since this would need to be on the repo record (along with different contact types... e.g. reference assistance, digitization requests, whatever)
           # 'contactPoint' => @result['agent_representation']['_resolved']['agent_contacts'][0]['name']
         }
@@ -132,7 +133,7 @@ class RepositoriesController < ApplicationController
     @data =  archivesspace.search(query, 1, @criteria) || {}
     @result
     if !@data['results'].blank?
-      @result = JSON.parse(@data['results'][0]['json'])
+      @result = ASUtils.json_parse(@data['results'][0]['json'])
       @badges = Repository.badge_list(@result['repo_code'].downcase)
       # Pry::ColorPrinter.pp @badges
       # make the repository details easier to get at in the view
